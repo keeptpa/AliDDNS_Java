@@ -18,11 +18,8 @@ public class Entry {
 
         //Set config and config directory
         aconfig = new AppConfig();
-        File configDirectory = new File(aconfig.path + "\\config\\");
-        if(!configDirectory.exists()){
-            configDirectory.mkdir();
-        }
-        File appConfig = new File(aconfig.path + "\\config\\appConfig.json");
+
+        File appConfig = new File(aconfig.appConfigPath);
 
         //App run once
         Logger.Log("<==============================>");
@@ -32,7 +29,7 @@ public class Entry {
 
         if(appConfig.exists()){
             Logger.Log("App config found, importing..");
-            String aconfigLocalJson = FileIO.Read(aconfig.path + "\\config\\appConfig.json");
+            String aconfigLocalJson = FileIO.Read(aconfig.appConfigPath);
             AppConfig currentLocalConfig = gson.fromJson(aconfigLocalJson,AppConfig.class);
 
             aconfig.key = currentLocalConfig.key;
@@ -52,7 +49,7 @@ public class Entry {
 
             //Save
             appConfig.createNewFile();
-            FileIO.Write(aconfig.path + "\\config\\appConfig.json", gson.toJson(aconfig),false);
+            FileIO.Write(aconfig.appConfigPath, gson.toJson(aconfig),false);
 
         }
         //====>Create client
@@ -78,17 +75,17 @@ public class Entry {
         }
 
         //Check if a client config exist
-        File clientConfig = new File(aconfig.path + "\\config\\clientConfig.json");
+        File clientConfig = new File(aconfig.clientConfigPath);
         if(!clientConfig.exists()){
             clientConfig.createNewFile();
 
-           FileIO.Write(aconfig.path + "\\config\\clientConfig.json",gson.toJson(thisQuery),false);
+           FileIO.Write(aconfig.clientConfigPath,gson.toJson(thisQuery),false);
         }
 
         //Then load the client config;
         Logger.Log("Loading client config..");
         ArrayList<ClientConfig> localClientConfig = new ArrayList<ClientConfig>();
-        localClientConfig = gson.fromJson(FileIO.Read(aconfig.path + "\\config\\clientConfig.json"),new TypeToken<ArrayList<ClientConfig>>(){}.getType());
+        localClientConfig = gson.fromJson(FileIO.Read(aconfig.clientConfigPath),new TypeToken<ArrayList<ClientConfig>>(){}.getType());
         //And check their controlling status
         Boolean needUpdate = false;
         for (ClientConfig local:localClientConfig
@@ -111,7 +108,7 @@ public class Entry {
         }
 
         //Cover it.
-        FileIO.Write(aconfig.path + "\\config\\clientConfig.json",gson.toJson(thisQuery),false);
+        FileIO.Write(aconfig.clientConfigPath,gson.toJson(thisQuery),false);
 
         //Start update
         if(needUpdate){
