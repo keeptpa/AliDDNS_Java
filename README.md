@@ -3,7 +3,8 @@
 可以自动将解析地址指向软件所在主机的外网地址。  
 ---  
 
-有一个C#实现:[已归档C#实现](https://github.com/keeptpa/AliDDNS_Csharp)
+有一个C#实现:[已归档C#实现](https://github.com/keeptpa/AliDDNS_Csharp)  
+这个C#实现的存在，是由于有一个傻子先动的是手而不是脑子去思考跨平台问题而导致的产物。
 
 ---  
 __USAGE__  
