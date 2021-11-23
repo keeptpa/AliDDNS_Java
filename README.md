@@ -5,6 +5,8 @@
 ---  
 __USAGE__  
 
+`java -jar ./AliDDNS.jar`  
+全平台均可使用  
 第一次运行会问询Access， 目前是明文存储的，这实在是太蠢了，一定会在不远的将来被修复。  
 会生成两个配置文件，其中appConfigs储存了软件自身的设置，clientConfigs储存了解析记录的设置，单个设置如下：  
 
