@@ -1,6 +1,9 @@
 # AliDDNS_Java
 
 可以自动将解析地址指向软件所在主机的外网地址。  
+---  
+
+有一个C#实现:[已归档C#实现](https://github.com/keeptpa/AliDDNS_Csharp)
 
 ---  
 __USAGE__  
